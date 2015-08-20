@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "DBManager.h"
 
 @interface RootViewController ()
 
@@ -20,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self setupViews];
+    [DBManager manager];
 }
 
 - (void)setupViews {

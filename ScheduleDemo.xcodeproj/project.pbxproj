@@ -15,6 +15,9 @@
 		D04772501B82F68300D6F491 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D047724F1B82F68300D6F491 /* Images.xcassets */; };
 		D04772531B82F68300D6F491 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D04772511B82F68300D6F491 /* LaunchScreen.xib */; };
 		D047725F1B82F68300D6F491 /* ScheduleDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D047725E1B82F68300D6F491 /* ScheduleDemoTests.m */; };
+		D04772721B85BBB200D6F491 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D04772711B85BBB200D6F491 /* DBManager.m */; };
+		D04772791B85C75100D6F491 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D04772751B85C6E600D6F491 /* libsqlite3.dylib */; };
+		D047727D1B85C91000D6F491 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D047727C1B85C91000D6F491 /* TaskModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +46,11 @@
 		D04772581B82F68300D6F491 /* ScheduleDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScheduleDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D047725D1B82F68300D6F491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D047725E1B82F68300D6F491 /* ScheduleDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDemoTests.m; sourceTree = "<group>"; };
+		D04772701B85BBB200D6F491 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		D04772711B85BBB200D6F491 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		D04772751B85C6E600D6F491 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D047727B1B85C91000D6F491 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		D047727C1B85C91000D6F491 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
 		EF0E5C56BA74E3679AA20623 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -51,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04772791B85C75100D6F491 /* libsqlite3.dylib in Frameworks */,
 				35BC28F5E80C808CDFAA96C4 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -77,6 +86,7 @@
 		7E1778FAF70341F6DA4E1DEB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D04772751B85C6E600D6F491 /* libsqlite3.dylib */,
 				3A8134D374720866DF0CEE99 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -105,6 +115,8 @@
 		D04772411B82F68300D6F491 /* ScheduleDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D047727A1B85C8F500D6F491 /* Model */,
+				D047726F1B85BB8700D6F491 /* DB */,
 				D04772461B82F68300D6F491 /* AppDelegate.h */,
 				D04772471B82F68300D6F491 /* AppDelegate.m */,
 				D04772491B82F68300D6F491 /* RootViewController.h */,
@@ -141,6 +153,24 @@
 				D047725D1B82F68300D6F491 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D047726F1B85BB8700D6F491 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				D04772701B85BBB200D6F491 /* DBManager.h */,
+				D04772711B85BBB200D6F491 /* DBManager.m */,
+			);
+			name = DB;
+			sourceTree = "<group>";
+		};
+		D047727A1B85C8F500D6F491 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D047727B1B85C91000D6F491 /* TaskModel.h */,
+				D047727C1B85C91000D6F491 /* TaskModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -280,7 +310,9 @@
 			files = (
 				D047724B1B82F68300D6F491 /* RootViewController.m in Sources */,
 				D04772481B82F68300D6F491 /* AppDelegate.m in Sources */,
+				D047727D1B85C91000D6F491 /* TaskModel.m in Sources */,
 				D04772451B82F68300D6F491 /* main.m in Sources */,
+				D04772721B85BBB200D6F491 /* DBManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +443,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ScheduleDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ScheduleDemo",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -422,6 +459,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ScheduleDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ScheduleDemo",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
