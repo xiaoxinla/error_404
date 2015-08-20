@@ -17,6 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.rootViewController = [[RootViewController alloc] init];
+    self.rootNavigationController = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
+    self.window.rootViewController = self.rootNavigationController;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
