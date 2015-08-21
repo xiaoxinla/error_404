@@ -46,7 +46,7 @@ NSString *dbpath = @"/tmp/tmp.db";
     model1.status = 1;
     model1.priority = 1;
     [self insertTask:model1];
-    [self deleteTaskById:1];
+    [self deleteTaskById:2];
     NSArray *array = [self queryAllTasks];
     NSLog(@"array=%lu",(unsigned long)[array count]);
     
@@ -69,8 +69,9 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 - (void)insertTask:(TaskModel *)model {
     if ([self.db open]) {
-        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO task (title, alerttime, frequency, status, priority) VALUES ('%@', %lld, %ld, %ld, %ld)", model.title,model.alertTime,(long)model.frequency,(long)model.status,(long)model.priority];
-        BOOL res = [self.db executeUpdate:insertSql];
+        NSString *insertSql = @"INSERT INTO task (title, alerttime, frequency, status, priority) VALUES (?, ?, ?, ?, ?)";
+        NSArray *paramArray = @[model.title, @(model.alertTime), @(model.frequency),@(model.status), @(model.priority)];
+        BOOL res = [self.db executeQuery:insertSql withArgumentsInArray:paramArray];
         if (res) {
             NSLog(@"insert success");
         } else {
@@ -83,8 +84,8 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 - (void)deleteTaskById:(NSInteger)taskId {
     if ([self.db open]) {
-        NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM task WHERE _id = %ld", (long)taskId];
-        BOOL res = [self.db executeUpdate:deleteSql];
+        NSString *deleteSql = @"DELETE FROM task WHERE _id = ?";
+        BOOL res = [self.db executeUpdate:deleteSql,[NSNumber numberWithInteger:taskId]];
         if (res) {
             NSLog(@"delete success");
         } else {
