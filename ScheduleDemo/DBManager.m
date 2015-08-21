@@ -97,7 +97,14 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 - (void)updateTask:(TaskModel *)model {
     if ([self.db open]) {
-        NSString *updateSql = [NSString stringWithFormat:@"UPDATE task"];
+        NSString *updateSql = @"UPDATE task SET title = ?, alerttime = ?, frequency = ?, status = ?, priority = ? WHERE _id = ?";
+        NSArray *paramArray  = @[model.title, @(model.alertTime), @(model.frequency), @(model.status), @(model.priority), @(model.taskId)];
+        BOOL res = [self.db executeUpdate:updateSql withArgumentsInArray:paramArray];
+        if (res) {
+            NSLog(@"update success");
+        } else {
+            NSLog(@"update error");
+        }
         [self.db close];
     }
 }
