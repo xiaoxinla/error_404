@@ -5,13 +5,16 @@ PODS:
   - FMDB/standard (2.5):
     - FMDB/common
   - Masonry (0.6.2)
+  - XLForm (3.0.2)
 
 DEPENDENCIES:
   - FMDB
   - Masonry
+  - XLForm (~> 3.0)
 
 SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
+  XLForm: 7817ce29f3f259186e837bb7309ac7e5b7e9b883
 
 COCOAPODS: 0.37.1

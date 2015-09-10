@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-XLForm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>93ACFA6EC1B3F4B1E5FF8408</key>
+		<key>4876B6D2841601BA2D3880D2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B13507F3C52D3331974E19AE</key>
+		<key>7078862DAEF27F1E7EFE4659</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B63A4FEF0883EB3F14FE1A31</key>
+		<key>AA4E6E3BBBB35D01C2E153C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DAA08B9C823254032768633B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -19,6 +19,8 @@
 		D04772721B85BBB200D6F491 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D04772711B85BBB200D6F491 /* DBManager.m */; };
 		D04772791B85C75100D6F491 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D04772751B85C6E600D6F491 /* libsqlite3.dylib */; };
 		D047727D1B85C91000D6F491 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D047727C1B85C91000D6F491 /* TaskModel.m */; };
+		D09578871BA1DC550077B000 /* TaskAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D09578861BA1DC550077B000 /* TaskAddViewController.m */; };
+		D095788C1BA1DDEC0077B000 /* DateAndTimeValueTrasformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D095788B1BA1DDEC0077B000 /* DateAndTimeValueTrasformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,10 @@
 		D04772751B85C6E600D6F491 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D047727B1B85C91000D6F491 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
 		D047727C1B85C91000D6F491 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
+		D09578851BA1DC550077B000 /* TaskAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskAddViewController.h; sourceTree = "<group>"; };
+		D09578861BA1DC550077B000 /* TaskAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskAddViewController.m; sourceTree = "<group>"; };
+		D095788A1BA1DDEC0077B000 /* DateAndTimeValueTrasformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateAndTimeValueTrasformer.h; sourceTree = "<group>"; };
+		D095788B1BA1DDEC0077B000 /* DateAndTimeValueTrasformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateAndTimeValueTrasformer.m; sourceTree = "<group>"; };
 		EF0E5C56BA74E3679AA20623 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,13 +133,13 @@
 		D04772411B82F68300D6F491 /* ScheduleDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D09578891BA1DDAC0077B000 /* Help */,
+				D09578881BA1DC610077B000 /* ViewController */,
 				D0159A4D1B8DA18A00902D64 /* TableCell */,
 				D047727A1B85C8F500D6F491 /* Model */,
 				D047726F1B85BB8700D6F491 /* DB */,
 				D04772461B82F68300D6F491 /* AppDelegate.h */,
 				D04772471B82F68300D6F491 /* AppDelegate.m */,
-				D04772491B82F68300D6F491 /* RootViewController.h */,
-				D047724A1B82F68300D6F491 /* RootViewController.m */,
 				D047724C1B82F68300D6F491 /* Main.storyboard */,
 				D047724F1B82F68300D6F491 /* Images.xcassets */,
 				D04772511B82F68300D6F491 /* LaunchScreen.xib */,
@@ -184,6 +190,26 @@
 				D047727C1B85C91000D6F491 /* TaskModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		D09578881BA1DC610077B000 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D04772491B82F68300D6F491 /* RootViewController.h */,
+				D047724A1B82F68300D6F491 /* RootViewController.m */,
+				D09578851BA1DC550077B000 /* TaskAddViewController.h */,
+				D09578861BA1DC550077B000 /* TaskAddViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		D09578891BA1DDAC0077B000 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				D095788A1BA1DDEC0077B000 /* DateAndTimeValueTrasformer.h */,
+				D095788B1BA1DDEC0077B000 /* DateAndTimeValueTrasformer.m */,
+			);
+			name = Help;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,11 +348,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0159A501B8DA1B900902D64 /* TaskCell.m in Sources */,
+				D095788C1BA1DDEC0077B000 /* DateAndTimeValueTrasformer.m in Sources */,
 				D047724B1B82F68300D6F491 /* RootViewController.m in Sources */,
 				D04772481B82F68300D6F491 /* AppDelegate.m in Sources */,
 				D047727D1B85C91000D6F491 /* TaskModel.m in Sources */,
 				D04772451B82F68300D6F491 /* main.m in Sources */,
 				D04772721B85BBB200D6F491 /* DBManager.m in Sources */,
+				D09578871BA1DC550077B000 /* TaskAddViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

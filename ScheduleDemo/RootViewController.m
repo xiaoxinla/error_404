@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "DBManager.h"
 #import "TaskCell.h"
+#import "TaskAddViewController.h"
 
 #define statusBarHeight [[UIApplication sharedApplication] statusBarFrame].size.height
 
@@ -72,6 +73,13 @@ const NSInteger doneTableViewTag = 3;
     
     self.mainScroller.contentOffset = CGPointMake(self.mainScroller.frame.size.width, 0);
     self.tabBar.selectedItem = self.tabBarArray[1];
+    
+    [self.addButton addTarget:self action:@selector(addNewTask) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)addNewTask {
+    TaskAddViewController *vc = [[TaskAddViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)setupViews {
