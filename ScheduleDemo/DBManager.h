@@ -7,8 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TaskModel.h"
 
 @interface DBManager : NSObject
+
+- (void)insertTask:(TaskModel *)model;
+- (void)updateTask:(TaskModel *)model;
+- (void)deleteTaskById:(NSInteger)taskId;
+- (NSArray *)queryAllTasks;
+- (NSArray *)queryTasksByStatus:(TaskStatus)status;
 
 + (instancetype)manager;
 

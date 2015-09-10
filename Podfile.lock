@@ -4,11 +4,14 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - Masonry (0.6.2)
 
 DEPENDENCIES:
   - FMDB
+  - Masonry
 
 SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
 
 COCOAPODS: 0.37.1

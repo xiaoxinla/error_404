@@ -6,12 +6,19 @@
 //  Copyright (c) 2015年 Xiaoxin. All rights reserved.
 //
 
+// TODO : 1.增加step表，属性包括： _id(INTEGER PRIMARY KEY AUTOINCREMENT), taskId(INTEGER)
+
 #import "DBManager.h"
 #import <FMDB/FMDB.h>
-#import "TaskModel.h"
 
-NSString *dbpath = @"/tmp/tmp.db";
-
+static NSString *scheduleDbName =  @"schedule.db";
+static NSString *tastTableName = @"task";
+static NSString *idColumn = @"_id";
+static NSString *titleColumn = @"title";
+static NSString *frequencyColumn = @"frequency";
+static NSString *statusColumn = @"status";
+static NSString *priorityColumn = @"priority";
+static NSString *alerttimeColumn = @"alerttime";
 @interface DBManager()
 
 @property (nonatomic, strong) FMDatabase *db;
@@ -22,9 +29,11 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 - (instancetype)init {
     if (self = [super init]) {
+        NSString *docsPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *dbpath   = [docsPath stringByAppendingPathComponent:scheduleDbName];
         self.db = [FMDatabase databaseWithPath:dbpath];
         [self createTable];
-        [self testSql];
+//        [self testSql];
     }
     return self;
 }
@@ -46,9 +55,9 @@ NSString *dbpath = @"/tmp/tmp.db";
     model1.status = 1;
     model1.priority = 1;
     [self insertTask:model1];
-    [self deleteTaskById:2];
+//    [self deleteTaskById:2];
     NSArray *array = [self queryAllTasks];
-    NSLog(@"array=%lu",(unsigned long)[array count]);
+    NSLog(@"arraySize=%lu",(unsigned long)[array count]);
     
 }
 
@@ -56,8 +65,8 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 - (void)createTable {
     if ([self.db open]) {
-        NSString *tableCreateSql = @"CREATE TABLE IF NOT EXISTS task(_id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, alerttime TIMESTAMP, frequency INTEGER, status INTEGER, priority INTEGER);";
-        BOOL res = [self.db executeUpdate:tableCreateSql];
+        NSString *createSql = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@ (%@ INTEGER PRIMARY KEY AUTOINCREMENT, %@ TEXT, %@ TIMESTAMP, %@ INTEGER, %@ INTEGER, %@ INTEGER)", tastTableName, idColumn, titleColumn, alerttimeColumn, frequencyColumn, statusColumn, priorityColumn];
+        BOOL res = [self.db executeUpdate:createSql];
         if (!res) {
             NSLog(@"create error");
         } else {
@@ -69,9 +78,9 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 - (void)insertTask:(TaskModel *)model {
     if ([self.db open]) {
-        NSString *insertSql = @"INSERT INTO task (title, alerttime, frequency, status, priority) VALUES (?, ?, ?, ?, ?)";
+        NSString *insertSql = [NSString stringWithFormat:@"INSERT INTO %@ (%@, %@, %@, %@, %@) VALUES (?, ?, ?, ?, ?)", tastTableName, titleColumn, alerttimeColumn, frequencyColumn, statusColumn, priorityColumn];
         NSArray *paramArray = @[model.title, @(model.alertTime), @(model.frequency),@(model.status), @(model.priority)];
-        BOOL res = [self.db executeQuery:insertSql withArgumentsInArray:paramArray];
+        BOOL res = [self.db executeUpdate:insertSql withArgumentsInArray:paramArray];
         if (res) {
             NSLog(@"insert success");
         } else {
@@ -84,7 +93,7 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 - (void)deleteTaskById:(NSInteger)taskId {
     if ([self.db open]) {
-        NSString *deleteSql = @"DELETE FROM task WHERE _id = ?";
+        NSString *deleteSql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@ = ?", tastTableName, idColumn];
         BOOL res = [self.db executeUpdate:deleteSql,[NSNumber numberWithInteger:taskId]];
         if (res) {
             NSLog(@"delete success");
@@ -97,7 +106,7 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 - (void)updateTask:(TaskModel *)model {
     if ([self.db open]) {
-        NSString *updateSql = @"UPDATE task SET title = ?, alerttime = ?, frequency = ?, status = ?, priority = ? WHERE _id = ?";
+        NSString *updateSql = [NSString stringWithFormat:@"UPDATE %@ SET %@ = ?, %@ = ?, %@ = ?, %@ = ?, %@ = ? WHERE _id = ?", tastTableName, titleColumn, alerttimeColumn, frequencyColumn, statusColumn, priorityColumn];
         NSArray *paramArray  = @[model.title, @(model.alertTime), @(model.frequency), @(model.status), @(model.priority), @(model.taskId)];
         BOOL res = [self.db executeUpdate:updateSql withArgumentsInArray:paramArray];
         if (res) {
@@ -111,10 +120,30 @@ NSString *dbpath = @"/tmp/tmp.db";
 
 
 - (NSArray *)queryAllTasks {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSArray *array = nil;
     if ([self.db open]) {
-    NSString *querySql = @"SELECT * FROM task";
-    FMResultSet *result = [self.db executeQuery:querySql];
+        NSString *querySql = [NSString stringWithFormat:@"SELECT * FROM %@",tastTableName];
+        FMResultSet *result = [self.db executeQuery:querySql];
+        array = [self getTaskResultFromResultSet:result];
+        [self.db close];
+    }
+    return array;
+}
+
+- (NSArray *)queryTasksByStatus:(TaskStatus)status {
+    NSArray *array = nil;
+    if ([self.db open]) {
+        NSString *queryString = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@ = ?", tastTableName, statusColumn];
+        FMResultSet *result = [self.db executeQuery:queryString];
+        array = [self getTaskResultFromResultSet:result];
+        [self.db close];
+    }
+    
+    return array;
+}
+
+- (NSArray *)getTaskResultFromResultSet:(FMResultSet *)result {
+    NSMutableArray *array = [[NSMutableArray alloc] init];
     while ([result next]) {
         TaskModel *model = [[TaskModel alloc] init];
         model.taskId = [result intForColumn:@"_id"];
@@ -124,8 +153,6 @@ NSString *dbpath = @"/tmp/tmp.db";
         model.status = [result intForColumn:@"status"];
         model.priority = [result intForColumn:@"priority"];
         [array addObject:model];
-    }
-        [self.db close];
     }
     return array;
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35BC28F5E80C808CDFAA96C4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8134D374720866DF0CEE99 /* libPods.a */; };
+		D0159A501B8DA1B900902D64 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0159A4F1B8DA1B900902D64 /* TaskCell.m */; };
 		D04772451B82F68300D6F491 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D04772441B82F68300D6F491 /* main.m */; };
 		D04772481B82F68300D6F491 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D04772471B82F68300D6F491 /* AppDelegate.m */; };
 		D047724B1B82F68300D6F491 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D047724A1B82F68300D6F491 /* RootViewController.m */; };
@@ -33,6 +34,8 @@
 /* Begin PBXFileReference section */
 		3A8134D374720866DF0CEE99 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		50D011D7A0EF8232408FEFF4 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		D0159A4E1B8DA1B900902D64 /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
+		D0159A4F1B8DA1B900902D64 /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		D047723F1B82F68300D6F491 /* ScheduleDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScheduleDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D04772431B82F68300D6F491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D04772441B82F68300D6F491 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -92,6 +95,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D0159A4D1B8DA18A00902D64 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				D0159A4E1B8DA1B900902D64 /* TaskCell.h */,
+				D0159A4F1B8DA1B900902D64 /* TaskCell.m */,
+			);
+			name = TableCell;
+			sourceTree = "<group>";
+		};
 		D04772361B82F68300D6F491 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +127,7 @@
 		D04772411B82F68300D6F491 /* ScheduleDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D0159A4D1B8DA18A00902D64 /* TableCell */,
 				D047727A1B85C8F500D6F491 /* Model */,
 				D047726F1B85BB8700D6F491 /* DB */,
 				D04772461B82F68300D6F491 /* AppDelegate.h */,
@@ -308,6 +321,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0159A501B8DA1B900902D64 /* TaskCell.m in Sources */,
 				D047724B1B82F68300D6F491 /* RootViewController.m in Sources */,
 				D04772481B82F68300D6F491 /* AppDelegate.m in Sources */,
 				D047727D1B85C91000D6F491 /* TaskModel.m in Sources */,
